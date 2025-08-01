@@ -360,26 +360,38 @@ console.log(people); // you can remove it
 const table = document.querySelector('.dashboard');
 
 for (let i = 0; i < people.length; i++) {
+  const person = people[i];
   const tr = document.createElement('tr');
 
+  const nameTd = document.createElement('td');
+
+  nameTd.textContent = person.name;
+  tr.append(nameTd);
+
+  const genderTd = document.createElement('td');
+
+  genderTd.textContent = person.gender;
+  tr.append(genderTd);
+
+  const bornTd = document.createElement('td');
+
+  bornTd.textContent = person.born;
+  tr.append(bornTd);
+
+  const diedTd = document.createElement('td');
+
+  diedTd.textContent = person.died;
+  tr.append(diedTd);
+
+  const ageTd = document.createElement('td');
+
+  ageTd.textContent = person.died - person.born;
+  tr.append(ageTd);
+
+  const centuryTd = document.createElement('td');
+
+  centuryTd.textContent = Math.ceil(person.died / 100);
+  tr.append(centuryTd);
+
   table.append(tr);
-
-  for (const el in people[i]) {
-    const td = document.createElement('td');
-
-    if (el === 'fatherName') {
-      const age = people[i].died - people[i].born;
-
-      td.textContent = age;
-    } else if (el === 'motherName') {
-      const century = Math.ceil(people[i].died / 100);
-
-      td.textContent = century;
-    } else if (el === 'slug') {
-      continue;
-    } else {
-      td.textContent = people[i][el];
-    }
-    tr.append(td);
-  }
 }
